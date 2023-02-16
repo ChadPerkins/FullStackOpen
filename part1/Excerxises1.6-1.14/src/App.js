@@ -6,10 +6,12 @@ const App = () => {
 	const [neutral, setNeutral] = useState(0);
 	const [bad, setBad] = useState(0);
 
-	const total = good + neutral + bad
-    const average = (good * 1 + bad * -1) / total
-    const positive = good * (100/total)
-	
+	const reviews = {
+		good: good,
+		neutral: neutral,
+		bad: bad,
+	};
+
 	return (
 		<div>
 			<Title text={"give feedback"} />
@@ -20,12 +22,7 @@ const App = () => {
 			/>
 			<Button handleClick={() => setBad(bad + 1)} review={"bad"} />
 			<Title text={"statistics"} />
-			<Review review={good} text={"good"} />
-			<Review review={neutral} text={"neutral"} />
-			<Review review={bad} text={"bad"} />
-			<Review review={total} text={"all"} />
-			<Average review={average} text={"average"} />
-			<Review review={positive} text={"positive"} />
+			<Statistics good={good} bad={bad} neutral={neutral} />
 		</div>
 	);
 };
@@ -39,14 +36,20 @@ const Button = ({ handleClick, review }) => {
 const Title = ({ text }) => {
 	return <h1>{text}</h1>;
 };
-const Review = ({ review, text }) => {
-	return (
-		<p>
-			{text} {review}
-		</p>
-	);
-};
 
-const Average = ({ review, text }) => {
-	return <p>{text} {review}</p>;
+const Statistics = ({ good, bad, neutral }) => {
+	const total = good + neutral + bad;
+	const average = (good * 1 + bad * -1) / total;
+	const positive = good * (100 / total);
+
+	return (
+		<div>
+			<p>good {good}</p>
+			<p>neutral {neutral}</p>
+			<p>bad {bad}</p>
+			<p>all {total}</p>
+			<p>average {average}</p>
+			<p>positive {positive}</p>
+		</div>
+	);
 };
