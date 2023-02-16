@@ -12,19 +12,60 @@ const App = () => {
 		"The only way to go fast, is to go well.",
 	];
 
-	const [selected, setSelected] = useState(0);
-
-	const handleClick = () => {
-		setSelected(Math.floor(Math.random() * (anecdotes.length - 1)))
+	const voteList = [];
+	for (let i = 0; i < anecdotes.length; i++) {
+		voteList.push(0);
 	}
 
+	const [selected, setSelected] = useState(0);
+	const [votes, setVotes] = useState(voteList);
+
+	const handleVote = () => {
+		const newVotes = [...votes];
+		newVotes[selected] += 1;
+		setVotes(newVotes);
+	};
+
+	const handleClick = () => {
+		setSelected(Math.floor(Math.random() * anecdotes.length));
+	};
 
 	return (
-		<>
-			<div>{anecdotes[selected]}</div>
-			<button onClick={handleClick}>next anecdote</button>
-		</>
+		<div>
+			<Header text={"Anecdote of the day"} />
+			<p>{anecdotes[selected]}</p>
+			<p>has {votes[selected]} votes</p>
+			<Button onClick={handleVote} text={"votes"} />
+			<Button onClick={handleClick} text={"next anecdote"} />
+
+			<Header text={"Anecdote with the most votes"} />
+			<Winner anecdotes={anecdotes} votes={votes} />
+		</div>
 	);
 };
 
 export default App;
+
+const Button = ({ onClick, text }) => {
+	return <button onClick={onClick}>{text}</button>;
+};
+
+const Header = ({ text }) => {
+	return <h1>{text}</h1>;
+};
+
+const Winner = ({ anecdotes, votes }) => {
+	const highestVote = Math.max(...votes);
+	const winnerIndex = votes.indexOf(highestVote);
+	const winner = anecdotes[winnerIndex];
+	if (highestVote === 0) {
+		return <p>No votes yet</p>;
+	}
+
+	return (
+		<div>
+		  <p>{winner}</p>
+		  <p>has {highestVote} votes</p>
+		</div>
+	  )
+};
