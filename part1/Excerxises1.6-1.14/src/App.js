@@ -6,12 +6,6 @@ const App = () => {
 	const [neutral, setNeutral] = useState(0);
 	const [bad, setBad] = useState(0);
 
-	const reviews = {
-		good: good,
-		neutral: neutral,
-		bad: bad,
-	};
-
 	return (
 		<div>
 			<Title text={"give feedback"} />
@@ -41,6 +35,10 @@ const Statistics = ({ good, bad, neutral }) => {
 	const total = good + neutral + bad;
 	const average = (good * 1 + bad * -1) / total;
 	const positive = good * (100 / total);
+
+	if (good === 0 && neutral === 0 && bad === 0) {
+		return <p>No feedback given</p>
+	}
 
 	return (
 		<div>
