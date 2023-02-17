@@ -1,15 +1,20 @@
-import React from 'react'
+import React from "react";
 
-const Total = ({courses}) => {
-    let totalExersizes = 0;
-    const total = courses.parts.map(course => {
-        totalExersizes += course.exercises;
-        return totalExersizes;        
-    })
+const Total = ({ courses }) => {
+	const totalExersizes = 0;
+	const addTotal = courses.parts.reduce((total, currentValue) => {
+		return (total += currentValue.exercises);
+	}, totalExersizes);
+	// const total = courses.parts.map(course => {
+	//     totalExersizes += course.exercises;
+	//     return totalExersizes;
+	// })
 
-  return (
-    <p><b>total of {totalExersizes} exercises</b></p>
-  )
-}
+	return (
+		<p>
+			<b>total of {addTotal} exercises</b>
+		</p>
+	);
+};
 
 export default Total;
