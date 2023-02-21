@@ -19,7 +19,7 @@ const Phonebook = ({ newSearch, people }) => {
 				.map((p) => {
 					return (
 						<p key={p.id}>
-							{p.name}: {p.phone}
+							{p.name}: {p.number}
 						</p>
 					);
 				})}
