@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Form from "./Components/Form";
 import Search from "./Components/Search";
-import Phonebook from "./Phonebook";
+import Phonebook from "./Components/Phonebook";
 
 const App = () => {
 	const [people, setPeople] = useState([]);
@@ -25,7 +25,6 @@ const App = () => {
 				people.concat({
 					name: newName,
 					phone: newPhone,
-					id: people[people.length - 1].id + 1,
 				})
 			);
 		}

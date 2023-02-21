@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Form from "./Components/Form";
 import Search from "./Components/Search";
-import Phonebook from "./Phonebook";
+import Phonebook from "./Components/Phonebook";
 
 const App = () => {
 	const [persons, setPersons] = useState([
@@ -48,7 +48,7 @@ const App = () => {
 				setNewPhone={setNewPhone}
 			/>
 			<h2>Numbers</h2>
-      <Phonebook people={persons} newSearch={newSearch}/>
+			<Phonebook people={persons} newSearch={newSearch} />
 		</div>
 	);
 };
