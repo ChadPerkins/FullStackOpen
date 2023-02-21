@@ -1,4 +1,7 @@
 import { useState } from "react";
+import Form from "./Components/Form";
+import Search from "./Components/Search";
+import Phonebook from "./Phonebook";
 
 const App = () => {
 	const [persons, setPersons] = useState([
@@ -24,7 +27,6 @@ const App = () => {
 				})
 			);
 		}
-		console.log(persons);
 	};
 
 	return (
@@ -32,55 +34,21 @@ const App = () => {
 			<h2>Phonebook</h2>
 			<p>
 				filter shown with{" "}
-				<input
-					placeholder="Search"
-					value={newSearch}
-					onChange={(e) => setNewSearch(e.target.value)}
+				<Search
+					newSearch={newSearch}
+					updateSearch={(e) => setNewSearch(e.target.value)}
 				/>
 			</p>
 			<h2>add a new</h2>
-			<form onSubmit={addNewName}>
-				<div>
-					name:
-					<input
-						placeholder="Enter a name"
-						value={newName}
-						onChange={(e) => setNewName(e.target.value)}
-					/>
-				</div>
-
-				<div>
-					number:{" "}
-					<input
-						placeholder="Enter a phone number"
-						value={newPhone}
-						onChange={(e) => setNewPhone(e.target.value)}
-					/>
-				</div>
-				<div>
-					<button type="submit">add</button>
-				</div>
-			</form>
+			<Form
+				addNewName={addNewName}
+				newName={newName}
+				newPhone={newPhone}
+				setNewName={setNewName}
+				setNewPhone={setNewPhone}
+			/>
 			<h2>Numbers</h2>
-			{persons
-				.filter((p) => {
-					if (newSearch === "") {
-						return p;
-					} else if (
-						p.name
-							.toLocaleLowerCase()
-							.includes(newSearch.toLocaleLowerCase())
-					) {
-						return p;
-					}
-				})
-				.map((p) => {
-					return (
-						<p key={p.id}>
-							{p.name}: {p.phone}
-						</p>
-					);
-				})}
+      <Phonebook people={persons} newSearch={newSearch}/>
 		</div>
 	);
 };
