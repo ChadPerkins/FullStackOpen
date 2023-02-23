@@ -1,7 +1,5 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-/node_modules
+.node_modules
 /.pnp
 .pnp.js
 
@@ -17,7 +15,42 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+**/**/dist/
+**/**/node_modules/
+.idea
+
+.firebase
+
+.runtimeconfig.json
+
+# compiled output
+/dist
+
+# Logs
+logs
+*.log
+lerna-debug.log*
+
+# Tests
+/.nyc_output
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/
+
+storybook-static
+*.sqlite
