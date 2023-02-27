@@ -66,8 +66,18 @@ describe("Total Likes", () => {
 });
 
 describe("Highest Likes", () => {
-    test("The blog with the highest likes is", () => {
-        const result = listHelper.highestLikes(blogs);
-        expect(result).toEqual(blogs[2])
-    })
+	test("The blog with the highest likes is", () => {
+		const result = listHelper.mostLikes(blogs);
+		expect(result).toEqual(blogs[2]);
+	});
+});
+
+describe("Most Blogs Posts", () => {
+	test("The author with the most blog posts is", () => {
+		const mostBlogs = listHelper.mostBlogs(blogs)
+        expect(mostBlogs).toEqual({
+            author: "Robert C. Martin",
+            blogs: 3
+        })
+	});
 });
