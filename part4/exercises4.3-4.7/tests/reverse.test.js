@@ -65,19 +65,29 @@ describe("Total Likes", () => {
 	});
 });
 
-describe("Highest Likes", () => {
+describe("Highest Liked blog", () => {
 	test("The blog with the highest likes is", () => {
-		const result = listHelper.mostLikes(blogs);
+		const result = listHelper.favoriteBlog(blogs);
 		expect(result).toEqual(blogs[2]);
 	});
 });
 
-describe("Most Blogs Posts", () => {
+describe("Most Blogs Posted", () => {
 	test("The author with the most blog posts is", () => {
-		const mostBlogs = listHelper.mostBlogs(blogs)
-        expect(mostBlogs).toEqual({
-            author: "Robert C. Martin",
-            blogs: 3
-        })
+		const mostBlogs = listHelper.mostBlogs(blogs);
+		expect(mostBlogs).toEqual({
+			author: "Robert C. Martin",
+			blogs: 3,
+		});
+	});
+});
+
+describe("Most Liked Blog", () => {
+	test("The author with the most liked post is", () => {
+		const mostBlogs = listHelper.mostLikes(blogs);
+		expect(mostBlogs).toEqual({
+			author: "Edsger W. Dijkstra",
+			likes: 17,
+		});
 	});
 });
