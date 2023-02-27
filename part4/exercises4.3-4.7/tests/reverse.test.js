@@ -65,3 +65,9 @@ describe("Total Likes", () => {
 	});
 });
 
+describe("Highest Likes", () => {
+    test("The blog with the highest likes is", () => {
+        const result = listHelper.highestLikes(blogs);
+        expect(result).toEqual(blogs[2])
+    })
+});
